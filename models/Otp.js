@@ -16,7 +16,6 @@ const OTP = new mongoose.Schema({
     expires: 600,
   },
 });
-
 async function sendVerificationEmail(email,otp){
   try{
     const mailResponse = await sendEmail(email,"OTP for verification",`<h1>Your OTP is ${otp}</h1>`);
