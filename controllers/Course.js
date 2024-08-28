@@ -71,6 +71,9 @@ exports.createCourse = async (req, res) => {
 };
 
 //fetch all courses
+exports.getCourseDetail = async(re,res)=>{
+  
+}
 
 exports.allCourse = async (req, res) => {
   try {
