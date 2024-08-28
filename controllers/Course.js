@@ -71,8 +71,28 @@ exports.createCourse = async (req, res) => {
 };
 
 //fetch all courses
-exports.getCourseDetail = async(re,res)=>{
-  
+exports.getCourseDetail = async(req,res)=>{
+  const courseId = req.body
+  if(!courseId){
+    return req.status(400).json({
+      success:false,
+      message:"All fields are required"
+    })
+  }
+  const course = await Course.findOne({_id:courseId})
+  if(!course){
+    return req.status(400).json({
+      success:false,
+      message:"Course not found"
+    })
+  }
+
+  const courseDetails = course.courseDescription
+  return req.status(200).json({
+    success:true,
+    message:"successful",
+    courseDetails
+  })
 }
 
 exports.allCourse = async (req, res) => {
