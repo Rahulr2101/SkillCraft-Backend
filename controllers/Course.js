@@ -71,7 +71,7 @@ exports.createCourse = async (req, res) => {
 };
 
 //fetch all courses
-exports.getCourseDetail = async (req, res) => {
+exports.getCourseDetails = async (req, res) => {
   try {
     const courseId = req.body;
     if (!courseId) {
@@ -118,7 +118,7 @@ exports.getCourseDetail = async (req, res) => {
   
 };
 
-exports.allCourse = async (req, res) => {
+exports.getAllCourses = async (req, res) => {
   try {
     const allCourses = await Course.find({});
     return req.status(200).json({

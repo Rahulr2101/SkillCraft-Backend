@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const emailSender = require("../utils/mailSender");
 
-exports.Contactus = async (req, res) => {
+exports.contactUsController = async (req, res) => {
   try {
     const { firstName, lastName, emailAddress, phoneNumber, message } = req.body;
   if (!firstName || !lastName || !emailAddress || !phoneNumber || !message) {

@@ -7,7 +7,7 @@ const Profile = require("../models/Profile");
 require("dotenv").config();
 const mail = require("../utils/mailSender");
 
-exports.sendOtp = async (req, res) => {
+exports.sendotp = async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -61,7 +61,7 @@ validEmail = (email) => {
     );
 };
 
-exports.signUp = async (req, res) => {
+exports.signup = async (req, res) => {
   try {
     const {
       firstName,
@@ -138,7 +138,7 @@ exports.signUp = async (req, res) => {
   }
 };
 
-exports.signIn = async (req, res) => {
+exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 

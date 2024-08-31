@@ -57,7 +57,7 @@ exports.updateSection = async (req, res) => {
   }
 };
 
-exports.delateSection = async (req, res) => {
+exports.deleteSection = async (req, res) => {
   try {
     const {SectionId} = req.params
     if(!SectionId){

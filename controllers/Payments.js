@@ -4,7 +4,7 @@ const User = require("../models/User");
 const emailSender = require("../utils/mailSender");
 const { default: mongoose } = require("mongoose");
 
-exports.CreatePay = async (req, res) => {
+exports.capturePayment = async (req, res) => {
   const { CourseId } = req.body;
 
   const UserId = req.user.id;
@@ -69,7 +69,7 @@ exports.CreatePay = async (req, res) => {
   }
 };
 
-exports.verifySignature = async (req, res) => {
+exports.verifyPayment = async (req, res) => {
   const webhookSecret = "12345678";
   const signature = req.headers["x-razorpay-signature"];
 

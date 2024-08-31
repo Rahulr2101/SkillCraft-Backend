@@ -2,7 +2,7 @@ const SubSection = require("../models/SubSection");
 const Section = require("../models/Section");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 
-const createSubSection = async (req, res) => {
+exports.createSubSection = async (req, res) => {
   try {
     const { subSection, description, timeDuration, SectionId } = req.body;
     const video = req.files.videoFile;
@@ -74,7 +74,7 @@ exports.updateSubSection =async(req, res) =>{
   
 }
 
-exports.delateSubSection = async(req,res) =>{
+exports.deleteSubSection = async(req,res) =>{
   try{
     const{subSectionId} = req.body
     await SubSection.findByIdAndDelete(subSectionId)
