@@ -71,29 +71,52 @@ exports.createCourse = async (req, res) => {
 };
 
 //fetch all courses
-exports.getCourseDetail = async(req,res)=>{
-  const courseId = req.body
-  if(!courseId){
+exports.getCourseDetail = async (req, res) => {
+  try {
+    const courseId = req.body;
+    if (!courseId) {
+      return req.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+    const courseDetails = await Course.find({ _id: courseId })
+      .populate({
+        path: "Instructor",
+        populate: {
+          path: "additionalDetails",
+        },
+      })
+      .populate({
+        path: "CourseContent",
+        populate: {
+          path: "SubSection",
+        },
+      })
+      .populate("ratingAndReview")
+      .populate("studentsEnrolled")
+      .exec();
+    if (!courseDetails) {
+      return req.status(400).json({
+        success: false,
+        message: "Course not found",
+      });
+    }
+  
+    return req.status(200).json({
+      success: true,
+      message: "successful",
+      courseDetails,
+    });
+  } catch (err) {
     return req.status(400).json({
       success:false,
-      message:"All fields are required"
-    })
-  }
-  const course = await Course.findOne({_id:courseId})
-  if(!course){
-    return req.status(400).json({
-      success:false,
-      message:"Course not found"
+      message:err.message
     })
   }
 
-  const courseDetails = course.courseDescription
-  return req.status(200).json({
-    success:true,
-    message:"successful",
-    courseDetails
-  })
-}
+  
+};
 
 exports.allCourse = async (req, res) => {
   try {
